@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Play Books Clone</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+        <link href='http://fonts.googleapis.com/css?family=Stoke:300|Roboto:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    
+        <script src="https://kit.fontawesome.com/442d10340d.js" crossorigin="anonymous"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="pad">
+                <span class="logo">
+                    <i class="fab fa-google-play"></i>
+                    <h1>Woogle <span class="logo-sub">play</span></h1>
+                </span>
+            </div>
+            <div class="topbar">
+                <span class="topbar-title pad sidebar">
+                    <a class="category-toggle" data-id="category-toggle" href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    <i class="fas fa-book"></i>
+                    <h2>Books</h2>
+                </span>
+
+                <div class="categories sidebar standout">
+                    <ul>
+                        <li><a data-id="category" href="#category/all">All</a></li>
+                        <li><a data-id="category" href="#category/scifi">Science Fiction</a></li>
+                        <li><a data-id="category" href="#category/romance">Romance</a></li>
+                        <li><a data-id="category" href="#category/horror">Horror</a></li>
+                        <li><a data-id="category" href="#category/sport">Sports</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div class="books-wrapper" data-id="books-wrapper">
+            <div class="books content sidebar-padding" data-id="book-list">
+            </div>
+
+            <div class="book-details" data-id="book-details">
+            </div>
+        </div>
+
+        <script type="text/html" data-id="book-detail-view">
+            <header class="book-header content sidebar-padding row">
+                <div class="column thumb-image">
+                    <img src="<%= (imageLink.small || imageLink.thumbnail) %>">
+                </div>
+
+                <div class="column pad">
+                    <div class="title"><%= volumeInfo.title %></div>
+                    <div>
+                        <span data-id="published-authors"><%= (volumeInfo.authors ? ('<em>' + volumeInfo.authors.join(" - ") + '</em> - ') : "") +  volumeInfo.publishedDate %></span>
+                        <br>
+                        <span data-id="publisher"><%= (volumeInfo.publisher ? (volumeInfo.publisher + ' - Publisher') : '') %></span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="book-content content sidebar-padding standout">
+                <h1 class="title">
+                    <%= volumeInfo.title %>
+                </h1>
+                <%= volumeInfo.description %>
+            </div>
+        </script>
+
+        <script type="text/html" data-id="book-list-view">
+            <li class="book">
+                <a class="thumb-link" href="<%= bookDetailPath %>">
+                    <span class="overlay"></span>
+                    <img src="<%=bookImageUrl%>">
+                </a>
+            </li>
+        </script>
+
+        <script src="js/bootstrap.js"></script>
+        <script src="js/routers/Router.js"></script>
+        <script src="js/models/Books.js"></script>
+        <script src="js/models/Book.js"></script>
+        <script src="js/views/BooksList.js"></script>
+        <script src="js/views/BookDetail.js"></script>
+        <script src="js/views/Categories.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
